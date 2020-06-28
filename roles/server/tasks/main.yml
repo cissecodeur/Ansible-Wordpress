@@ -1,0 +1,17 @@
+---
+# tasks file for server
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=3600
+  sudo: yes
+
+- name: Installation des logiciels requis par le serveur
+  apt: name={{ item }} state=present
+  sudo: yes
+  with_items:
+    - apache2
+    - mysql-server
+    - php7-mysql
+    - php7
+    - libapache2-mod-php7
+    - php7-mcrypt
+    - python-mysqldb
